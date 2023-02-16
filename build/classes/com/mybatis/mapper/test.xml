@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.mapper.TestMapper">
+	<select id="testDate" parameterType="java.util.HashMap" resultType="java.lang.String">
+		SELECT to_char(SYSDATE, 'YYYY-MM-DD HH:MI:SS') FROM dual
+	</select>
+
+	<select id="getBookMember" parameterType="java.util.HashMap" resultType="map">
+		SELECT mem_no, mem_id, mem_pw, mem_name
+		FROM book_member
+		WHERE mem_id = #{mem_id}
+		   OR mem_pw = #{mem_pw}
+	</select>
+</mapper>

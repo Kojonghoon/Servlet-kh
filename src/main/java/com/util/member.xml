@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MemberMapper">
+<!-- 
+!DOCTYPE은 주석이 아니다
+js, vue.js, react.js ->json - Front-End
+mapper : 루트태그이름. 반드시 이태그안에 작성할 것 - 자바, 스프링.xml(MVC패턴, spring boot(annotation), spring, maven, gradle, 코틀린)환경
+PUBLIC - 공공의
+-//mybatis.org//DTD Mapper 3.0 - 버전정보
+//EN 영문태그만 지원
+//XML문서에서 사용할 수 있는 태그정의서
+사용자가 입력한 값을 받아올 때 parameterType에 해당 타입을 적는다
+만일 사용자 정의 클래스라면(예: MemberVO)
+패키지를 포함하는 full name으로 작성함
+ -->
+	<!-- <select id="getMemberList" parameterType="com.vo.MemberVO" resultType="map"> -->
+	<!-- <select id="getMemberList" parameterType="int" resultType="map"> -->
+	<!-- <select id="getMemberList" parameterType="java.lang.Integer" resultType="map"> -->
+	<select id="getMemberList" parameterType="java.util.HashMap" resultType="map">
+		SELECT mem_no, mem_id, mem_name FROM member    
+		<where>
+			<if test='mem_no > 0'>
+			 	mem_no = #{mem_no}
+			 </if>
+		</where>
+	</select>	  	
+	<select id="myBatisMemberList2" parameterType="java.util.HashMap" resultType="com.vo.MemberVO">
+		SELECT mem_no, mem_id, mem_name FROM member    
+		<where>
+			<if test='mem_no > 0'>
+			 	mem_no = #{mem_no}
+			 </if>
+		</where>
+		ORDER BY mem_no desc
+	</select>	  	
+</mapper>

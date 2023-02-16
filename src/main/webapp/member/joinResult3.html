@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>joinResult3</title>
+</head>
+<body>
+	<div id="d_result"></div>
+	<script type="text/javascript">
+		let user_id = 'kiwi';
+		let user_pw = '12345';
+		user_id = window.prompt("아이디를 입력하세요.");
+		user_pw = window.prompt("비번을 입력하세요.");
+​
+		const myHeaders = new Headers();
+		myHeaders.append("Cookie", "JSESSIONID=CE0E7DF729D7BAA15AC7F72DD8C026B7");
+		const requestOptions = {
+		  method: 'GET',
+		  headers: myHeaders,
+		  redirect: 'follow'
+		};
+	
+		fetch(`http://localhost:9000/20221228/member/joinAction.jsp?mem_id=${user_id}&mem_pw=${user_pw}`, requestOptions)
+		  .then(response => response.text())
+		  .then(result => {
+			  const dresult = document.querySelector("#d_result");
+			  dresult.innerText = result
+		  })
+		  .catch(error => console.log('error', error));	
+	</script>
+</body>
+</html>

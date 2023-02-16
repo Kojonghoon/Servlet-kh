@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>joinResult2</title>
+</head>
+<body>
+<div id="d_result" ></div>
+	<script type="text/javascript">
+	const user_id = 'kiwi';
+	const user_pw = '12345';
+	
+	
+	const myHeaders = new Headers();
+	myHeaders.append("Cookie", "JSESSIONID=CE0E7DF729D7BAA15AC7F72DD8C026B7");
+	const requestOptions = {
+	  method: 'GET',
+	  headers: myHeaders,
+	  redirect: 'follow'
+	};
+
+	fetch(`http://localhost:9000/20221228/member/joinAction.jsp?mem_id=${user_id}&mem_pw=${user_pw}`, requestOptions)
+	  .then(response => response.text())
+	  .then(result => {
+		  const dresult = document.querySelector("#d_result");
+		  dresult.innerText=result
+	  })
+	  .catch(error => console.log('error', error));
+	</script>
+</body>
+</html>

@@ -30,7 +30,7 @@
 			out.print("<br>");
 		}
 	}
-	/*out.print("<hr>");
+	out.print("<hr>");
 	//getAttribute의 리턴타입은 Object이다. (getParameter의 리턴타입은 String이다.)
 	List<Map<String, Object>> mList = (List<Map<String, Object>>) session.getAttribute("mList");
 	if (mList != null) {
@@ -39,7 +39,7 @@
 			out.print(rMap.get("mem_id") + ", " + rMap.get("mem_pw") + ", " + rMap.get("mem_name"));
 			out.print("<br/>");
 		}
-	}*/
+	}
 	%>
 </body>
 </html>

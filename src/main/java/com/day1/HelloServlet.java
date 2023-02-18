@@ -9,38 +9,74 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-// form전송시 클라이언트측의 요청을 서블릿이 듣는다
-// method = "get"이면 doGet호출
-// post이면 doPost호출됨
-// 자바가 서블릿이 되기 위한 조건은 반드시 HttpServlet을 상속받는 것이다.
-// 상속을 받으면 doGet과 doPost 오버라이딩 할 수 있는데 
-// 이 함수의 파라미터를 통해서 request요청 객체와 response 응답 객체를 주입 받는다.
-// 톰캣 서버에서 주입 해줌
-// 웹 서비스를 위해서는 URL등록이 필수 이다 - 왜냐면 브라우저가 실행 주체 이니까
-// 프로젝트에 필요한 URL등록은 annotation과 web.xml문서를 통해서 가능하다
-// annotation은 자동이고 편하기는 하지만 수동처리와 비교해서 추가 작업이 불가능한 단점이 있다
-// xml문서를 통해서 객체 등록하고 주입 받는다.
-// 이유는 spring 사용시 메이븐 레포를 이용한 프로젝트 생성인 경우에 xml문서로 환경 설정함
-// 클래스 사이의 객체 주입관계도 xml문서로 처리 가능함
+
+import lombok.extern.log4j.Log4j2;
+
+@SuppressWarnings( "serial" )
 public class HelloServlet extends HttpServlet {
-   Logger logger = Logger.getLogger(HelloServlet.class);
-   
-   @Override
-   public void doGet(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException 
-   {
-      System.out.println("doGet호출");
-      logger.info("doGet 호출 성공");
-      res.setContentType("text/html;charset=UTF-8");
-      PrintWriter out = res.getWriter();
-      out.print("<font size=28px color=red>주의</font>");
-   }
-   
-   @Override
-   public void doPost(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException 
-   {
-      System.out.println("doPost호출");
-      logger.info("doPost 호출 성공");
-   }
+	Logger logger = Logger.getLogger(HelloServlet.class);
+    @Override
+    public void doGet( HttpServletRequest req, HttpServletResponse res ) throws ServletException, IOException {
+        logger.info( "doGet 호출 성공" );
+        String mem_id = req.getParameter("mem_id");
+        logger.info("사용자가 입력한 아이디는 "+mem_id+"입니다.");
+        res.setContentType( "text/html;charset=UTF-8" );
+        //인스턴스화에서 메서드를 사용하는 경우는 뭐가 다른걸까요 ?
+        PrintWriter out     = res.getWriter();
+        String      msg = "안녕하세요";
+        //브라우저에서 요청 [get방식]시 d응답으로 나가는 문자열
+        //문자열(1.텍스트파일:숫자의 경우 문자로 변환 후 쓴다, 2. 바이너리파일:데이터를 있는 그대로 읽고 쓴다.)
+        //text메인타입 html서브타입 - 브라우저 번역 - 태그는 ㅇ벗고 내용만 출력
+        out.print( "<font size=36px color=violet>" + msg + "</font>" ); //리소스
+//        BookDao bDao = new BookDao();
+//        logger.info(bDao.testDate());
+    }
+    //단위테스트가 불가하다. - Postman 사용하면 가능하다
+    //Post방식은 브라우저 통해서 테스트 불가함
+    
+    public void doPost( HttpServletRequest req, HttpServletResponse res ) throws ServletException, IOException {
+    	logger.info( "doPost 호출 성공" );
+    	res.setContentType("text/html;charset=UTF-8");
+    	//인스턴스화에서 메서드를 사용하는 경우는 뭐가 다른걸까요 ?A a = new A()
+    	PrintWriter out = res.getWriter();
+    	out.print("<h3>doPost</h3>호출");
+    }
 }
+
+/*
+  [Web Service]
+  웹 서비스 제공을 위한 언어
+
+   Request / Response 
+   요청을 어디에 하지?
+   요청 방식에는 몇 가지가 있다?
+  요청을 위해서는 무엇이 준비되어 있어야 하나요 ?
+  
+   GET 방식
+   - 서버측의 RESOURCE(HTML, CSS, JS....)를 가져오기 위해서
+   - 쿼리스트링으로 전송(소용량)
+   - 노출 
+   - 공유 -> 쿠팡 도메일 ? 상품아이디 = aaa1234
+   - 검색
+	
+	
+	
+  	Post방식 
+  	- 서버에 데이터를 올리기 위해 설계됨
+  	- 전송 데이터 크기의 제한이 없음(대용량)
+  	- 보안에 유리, 공유에는 불리
+  	- 데이터 메시지의 body에 담아 전송함
+  	- 글쓰기, 로그인, 회원가입 
+ 
+ 
+	GET: 클라이언트가 서버에게 URL에 해당하는 자료의 전송을 요청한다.
+	HEAD: GET 요청으로 반환될 데이터 중 헤더 부분에 해당하는 데이터만 요청한다.
+	POST: 클라이언트가 서버에서 처리할 수 있는 자료를 보낸다. 예를 들어, 게시판에 글을 쓸 때 클라이언트의 문서가 서버로 전송되어야 한다. 멱등성을 보장하지 않는다.
+	PATCH: 클라이언트가 서버에게 지정한 URL의 데이터를 부분적으로 수정할 것을 요청한다.
+	PUT: 클라이언트가 서버에게 지정한 URL에 지정한 데이터를 저장할 것을 요청한다.
+	DELETE: 클라이언트가 서버에게 지정한 URL의 정보를 제거할 것을 요청한다.
+	TRACE: 클라이언트가 서버에게 송신한 요청의 내용을 반환해 줄 것을 요청한다.
+	CONNECT: 클라이언트가 특정 종류의 프록시 서버에게 연결을 요청한다.
+	OPTIONS: 해당 URL에서 지원하는 요청 메세지의 목록을 요청한다.
+ 
+  */

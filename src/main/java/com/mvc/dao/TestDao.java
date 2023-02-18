@@ -25,7 +25,7 @@ public class TestDao {
 			pMap.put("mem_id", "tomato");
 			pMap.put("mem_pw", "123");
 			mList = sqlSession.selectList("getBookMember", pMap); // test.xml과 id가 같아야함
-			logger.info(mList); //3건 모두 조
+			logger.info(mList); // 3건 모두 조
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

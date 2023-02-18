@@ -11,4 +11,6 @@
 		WHERE mem_id = #{mem_id}
 		   OR mem_pw = #{mem_pw}
 	</select>
+	
+	
 </mapper>

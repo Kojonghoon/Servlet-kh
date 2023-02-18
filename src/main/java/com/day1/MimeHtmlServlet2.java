@@ -16,7 +16,6 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 
 //서블릿은 java인데 브라우저에 출력할 수 있다 - 화면을 그리는데 서블릿을 사용함 - 가능해
-
 //서블릿을 경유하여 응답페이지를 jsp로 가져가는 실습니다.
 //최초 mimeHtmlResult.jsp 직접 호출하는 것이 아니라
 //23번에 있는 url 즉 /day1/html.do로 요청했을 떄 아패 코드 39번을 만나서 mimeHtmlResult.jsp
@@ -29,6 +28,14 @@ public class MimeHtmlServlet2 extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		logger.info("doGet호출");
+		//요청객체로 세션객체를 생성함 - 요청객체가 있어야만 세션사용이 가능함
+		//시간을 연장할 수 있다.
+		//서블릿에서는 객체의 유지 정도가 다르다??? 다를 수 있다??? 진짜??
+		//scope가 지원됨
+		//page scope - 그 페이지 안에서만 기억해 준다 -쓰레기
+		//request scope - 요청이 유지되는 동안에만 유지됨 -URL주소가 그대로 이면 유지 바뀌면 잃어버림
+		//session scope - URL주소가 바뀌어도 유지됨 - 톰캣은 기본이 30분셋
+		//application scope - 불사조 - 사용하면 안됨 - 서버가 다운되니까
 		HttpSession session = req.getSession();
 		String myName = new String("이순신");
 		int age = 35;
@@ -47,13 +54,13 @@ public class MimeHtmlServlet2 extends HttpServlet {
 		rmap.put("mem_pw", "111");
 		rmap.put("mem_name", "토마토");
 		mList.add(rmap);
-		   
+		
 		rmap = new HashMap<>();
 		rmap.put("mem_id", "kiwi");
 		rmap.put("mem_pw", "222");
 		rmap.put("mem_name", "키위");
 		mList.add(rmap);
-		   
+		
 		rmap = new HashMap<>();
 		rmap.put("mem_id", "banana");
 		rmap.put("mem_pw", "111");

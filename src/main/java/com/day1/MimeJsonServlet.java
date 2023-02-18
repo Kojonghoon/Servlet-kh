@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 //서블릿은 java인데 브라우저에 출력할 수 있다 - 화면을 그리는데 서블릿을 사용함 - 가능해 
 @WebServlet("/json.do") // 웹에서 접근 가능한 맵핑 주소 설정
-public class MimeJsonServlet extends HttpServlet {
+public class MimeJSONServlet extends HttpServlet {
 	   @Override
 	   public void doGet(HttpServletRequest req, HttpServletResponse res)
 	      throws ServletException, IOException 

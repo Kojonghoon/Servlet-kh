@@ -24,11 +24,10 @@
 		</environment>
 	</environments>
 	<mappers>
-	<!-- 
-		업무에 따라 관리할 쿼리문을 담은 xml문서의 물리적인 위치와 파일명을 등록할 것
-	 -->
+		<!-- 업무에 따라 관리할 쿼리문을 담은 xml문서의 물리적인 위치와 파일명을 등록할 것 -->
 		<mapper resource="com/mybatis/mapper/test.xml" />
 		<mapper resource="com/mybatis/mapper/member.xml" />
+		<mapper resource="com/mybatis/mapper/board.xml" />
 		<mapper resource="com/util/book.xml" />
 		<mapper resource="com/util/member2.xml" />
 	</mappers>

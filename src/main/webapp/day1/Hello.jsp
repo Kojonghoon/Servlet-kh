@@ -8,7 +8,7 @@
 </head>
 <body>
 	<form id="f_test" method="post" action="/day1/hello.kh">
-	<!-- 전송버튼에 대한 이벤트 처리가 없는 요청이 서버에 전달되는 이유는 뭘까요? -->
+		<!-- 전송버튼에 대한 이벤트 처리가 없는 요청이 서버에 전달되는 이유는 뭘까요? -->
 		<!-- <button>전송</button> -->
 		<input type="button" id="btnSend" value="전송">
 		<script type="text/javascript">

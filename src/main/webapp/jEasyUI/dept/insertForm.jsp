@@ -1,58 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>부서등록 - 다이얼로그</title>
-    <%@ include file="../../common/easyUI_common.jsp"%>
-  </head>
-  <body>
-    <div style="margin: 20px 0"></div>
-    <div style="margin: 30px">
-      <form id="f_dept" action="insertAction.do" method="get">
-        <div style="margin-bottom: 20px">
-          <input
-            class="easyui-textbox"
-            name="deptno"
-            label="부서번호:"
-            labelPosition="top"
-            data-options="prompt:'Enter a 부서번호'"
-            style="width: 200"
-          />
-        </div>
-        <div style="margin-bottom: 20px">
-          <input
-            class="easyui-textbox"
-            name="dname"
-            label="부서명:"
-            labelPosition="top"
-            data-options="prompt:'Enter a 부서명'"
-            style="width: 300"
-          />
-        </div>
-        <div style="margin-bottom: 20px">
-          <input
-            class="easyui-textbox"
-            name="loc"
-            label="지역:"
-            labelPosition="top"
-            data-options="prompt:'Enter a 지역'"
-            style="width: 300"
-          />
-        </div>
-        <div>
-          <a
-            href="javascript:insertAction()"
-            class="easyui-linkbutton"
-            iconCls="icon-ok"
-            style="width: 100%; height: 32px"
-            >등록</a
-          >
-        </div>
-      </form>
-    </div>
-    <script type="text/javascript">
+<head>
+<meta charset="UTF-8" />
+<title>부서등록 - 다이얼로그</title>
+<%@ include file="../../common/easyUI_common.jsp"%>
+</head>
+<body>
+	<div style="margin: 20px 0"></div>
+	<div style="margin: 30px">
+		<form id="f_dept" action="insertAction.do" method="get">
+			<div style="margin-bottom: 20px">
+				<input class="easyui-textbox" name="deptno" label="부서번호:"
+					labelPosition="top" data-options="prompt:'Enter a 부서번호'"
+					style="width: 200" />
+			</div>
+			<div style="margin-bottom: 20px">
+				<input class="easyui-textbox" name="dname" label="부서명:"
+					labelPosition="top" data-options="prompt:'Enter a 부서명'"
+					style="width: 300" />
+			</div>
+			<div style="margin-bottom: 20px">
+				<input class="easyui-textbox" name="loc" label="지역:"
+					labelPosition="top" data-options="prompt:'Enter a 지역'"
+					style="width: 300" />
+			</div>
+			<div>
+				<a href="javascript:insertAction()" class="easyui-linkbutton"
+					iconCls="icon-ok" style="width: 100%; height: 32px">등록</a>
+			</div>
+		</form>
+	</div>
+	<script type="text/javascript">
       const insertAction = () => {
         console.log("insertAction call");
         console.log(
@@ -81,5 +61,5 @@ pageEncoding="UTF-8"%>
         });
       };
     </script>
-  </body>
+</body>
 </html>

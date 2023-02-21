@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <!-- 
+	pageEncoding="UTF-8"%>
+<!-- 
     	확장자는 jsp이지만 마임타입은 html이다.
     	브라우저는 이 파일을 html문서로 판단함
     	왜냐하면
@@ -17,8 +17,8 @@
      -->
 <script>
 	document.write("<b>굵은글씨</b>");
-	
-/*
-	test.html문서 전체를 받극 객체가 document입니다.
- */
+
+	/*
+	 test.html문서 전체를 받극 객체가 document입니다.
+	 */
 </script>

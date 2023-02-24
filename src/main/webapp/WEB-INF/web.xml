@@ -12,7 +12,6 @@
 		<servlet-name>TestServlet</servlet-name>
 		<servlet-class>com.mvc.controller.TestServlet</servlet-class>
 	</servlet>
-
 	<servlet-mapping>
 		<servlet-name>TestServlet</servlet-name>
 		<url-pattern>/test/test.do</url-pattern>
@@ -22,24 +21,55 @@
 		<servlet-name>DeptManager</servlet-name>
 		<servlet-class>com.day1.DeptManager</servlet-class>
 	</servlet>
-
 	<servlet-mapping>
 		<servlet-name>DeptManager</servlet-name>
 		<url-pattern>/jEasyUI/dept/insertAction.do</url-pattern>
 	</servlet-mapping>
-
+	
 	<servlet>
 		<servlet-name>HelloServlet</servlet-name>
 		<servlet-class>com.day1.HelloServlet</servlet-class>
 	</servlet>
-
 	<servlet-mapping>
 		<servlet-name>HelloServlet</servlet-name>
 		<url-pattern>/day1/hello.kh</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>FrontController1</servlet-name>
+		<servlet-class>com.pojo.step1.FrontMVC1</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FrontController1</servlet-name>
+		<!-- *.st1하면 어떤 요청이름이 오든 확장자가 st1으로 끝나면 FrontMVC1서블릿이 인터셉트 함 
+			web.xml을 수정하면 무조건 서버를 재기동해야 수정된 내용이 반영됨
+		-->
+		<url-pattern>*.st1</url-pattern>
 	</servlet-mapping>
 
 	<session-config>
 		<session-timeout>10</session-timeout>
 	</session-config>
-
 </web-app>
+
+<!-- Deployment Descriptor
+	배치서술자
+	Spring maven빌드 -> pom.xml파일 등록
+	web.xml문서를 수정하면 반드시 서버를 내렸다가 다시 기동할 것. 주의
+	톰캣 서브를 기동하면 가장 먼저 잆는다
+	이 문서를 읽으면 st1확장자에 대해 알고 있다
+	st1으로 들어오는 모든 요청은 FrontMVC1.java가 인터셉트한다
+	이 요청은 브라우저으 ㅣ주소창에 하게되고
+	이 요청의 URL을 읽어서 upmu배열에 담느다
+	dept/getDeptList - select처리 -화면 유지 - forward페이지 이동 - 조회 결과는 request에 담음
+	dept/getInsert - insert처리 - 유지 필요 없음 - res.sendRedirect(페이지이름) ->path에 담겨있음
+	dept/getUpdate - update처리 - 유지 필요 없음 - res.sendRedirect(페이지이름) ->path에 담겨있음
+	dept/getDelete - delete처리 - 유지 필요 없음 - res.sendRedirect(페이지이름) ->path에 담겨있음
+	
+	path를 관리하는 클래스명은 ActionrForward이다
+	이 클래스에는 전변이 두 개 있다
+	path - 페이지 이름
+	isRedirect - true:res.sendRedirect, false: RequestDispatcher view = req.getRequestDispatcher()
+	view.forward(req, res)
+	위 내용에 대한 설정은 어디서 했나요 - FrontMVC1(doService)에서 했다
+	 -->

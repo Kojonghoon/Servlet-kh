@@ -1,4 +1,4 @@
-package com.pojo.step1;
+ package com.pojo.step1;
 
 import java.io.IOException;
 
@@ -80,8 +80,8 @@ public class FrontMVC1 extends HttpServlet {
                 RequestDispatcher view = req.getRequestDispatcher( af.getPath() );
                 view.forward( req, res );
             }
-        }
-    }// end of 페이지 이동처리에 대한 공통 코드 부분
+        }// end of 페이지 이동처리에 대한 공통 코드 부분
+    }// end of doservice
     
     @Override
     protected void doGet( HttpServletRequest req, HttpServletResponse res ) throws ServletException, IOException {

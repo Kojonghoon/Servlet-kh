@@ -8,13 +8,3 @@
    String temp = (String)request.getAttribute("jsonDoc");
    out.print(temp);
    %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>부서목록JSON</title>
-</head>
-<body>
-
-</body>
-</html>

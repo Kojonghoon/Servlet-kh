@@ -46,13 +46,38 @@
 		-->
 		<url-pattern>*.st1</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>FrontController2</servlet-name>
+		<servlet-class>com.pojo.step2.ActionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FrontController2</servlet-name>
+		<url-pattern>*.st2</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>FrontController3</servlet-name>
+		<servlet-class>com.pojo.step3.ActionSupport</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FrontController3</servlet-name>
+		<url-pattern>*.st3</url-pattern>
+	</servlet-mapping>
 
 	<session-config>
 		<session-timeout>10</session-timeout>
 	</session-config>
 </web-app>
 
-<!-- Deployment Descriptor
+<!-- 
+	context-param과 init-param차이
+	context-param은 서버가 기동될 떄 한 번 읽으면 서버
+	init-param은 서블릿이 요철 될 때 마다 새로 읽는다.
+
+
+
+Deployment Descriptor
 	배치서술자
 	Spring maven빌드 -> pom.xml파일 등록
 	web.xml문서를 수정하면 반드시 서버를 내렸다가 다시 기동할 것. 주의

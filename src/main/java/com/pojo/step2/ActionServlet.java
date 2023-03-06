@@ -35,6 +35,7 @@ public class ActionServlet extends HttpServlet {
         if ( obj != null ) {
             String pageMove[] = null;
             if ( obj instanceof String ) {
+                logger.info( "나는 obj" +obj );
                 if ( ( ( String ) obj ).contains( ":" ) ) {
                     logger.info( ":포함되어 있어요." );
                     pageMove = obj.toString().split( ":" );

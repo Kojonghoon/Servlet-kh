@@ -41,7 +41,7 @@ public class MyBatisCommonFactory {
     }// end of init
     
     public SqlSessionFactory getSqlSessionFactory() {
-        System.out.println( "11" );
+        System.out.println( "MyBatisCommonFactory - 11" );
         init();
         return sqlSessionFactory;
     }

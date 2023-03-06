@@ -25,7 +25,7 @@ public class Board2Dao {
             sqlSession = sqlSessionFactory.openSession();
             Map<String, Object> pMap = new HashMap<>();
             bList = sqlSession.selectList( "boardList", pMap ); // test.xml과 id가 같아야함
-            logger.info( bList ); // 3건 모두 조회
+            logger.info( bList );
         }catch ( Exception e ) {
             e.printStackTrace();
         }

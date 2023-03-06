@@ -18,16 +18,20 @@ public class ActionSupport extends HttpServlet {
     protected void doService( HttpServletRequest req, HttpServletResponse res ) throws ServletException, IOException {
         logger.info( "doService 호출" );
         String uri = req.getRequestURI();
-        logger.info( uri );//
+        logger.info( uri );     //board3/boardList.st3
         String context = req.getContextPath();
-        logger.info( context );//
+        logger.info( context ); //
         String command = uri.substring( context.length() + 1 );
+        logger.info( command ); //board3/boardList.st3
         int    end     = command.lastIndexOf( "." );// 16 -st1잘라내기 위해 사용
+        logger.info( end );     //16
         command = command.substring( 0, end );// dept/getDeptList
+        logger.info( command ); //board3/boardList
         String upmu[] = null;
+        logger.info( upmu );     //
         upmu = command.split( "/" );
         // test http://localhost:9000/board/getBoardList.st2
-        logger.info( upmu[0] + "," + upmu[1] );
+        logger.info( upmu[0] + "," + upmu[1] ); //board3,boardList
         req.setAttribute( "upmu", upmu );
         Object obj = "";
         
@@ -45,11 +49,11 @@ public class ActionSupport extends HttpServlet {
             if ( obj instanceof String ) {
                 
                 if ( ( ( String ) obj ).contains( ":" ) ) {
-                    logger.info( ":포함되어 있어요." );
+                    logger.info( ":이 포함되어 있어요." );
                     pageMove = obj.toString().split( ":" );
                 }
                 else {
-                    logger.info( ":포함되어 있지 않아요." );
+                    logger.info( ":이 포함되어 있지 않아요." );
                     pageMove = obj.toString().split( "/" );
                 }
                 logger.info( pageMove[0] + "," + pageMove[1] );

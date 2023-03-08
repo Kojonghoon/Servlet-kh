@@ -5,13 +5,17 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-// Model, ModelMap
+// Spring 부트에서는 requestParam 대신 해줌 Model, ModelMap
+// 사용자가 입력한 값을 Map에 담아 준다
+// 담을 map 은 콘트롤 계층에서 bind 메소드 호출시 파라미터를 이용해서 원본 주소번지를 받아온다.
+// 그리고 그 안에 담는다.
 public class HashMapBinder {
-    HttpServletRequest req = null;
+    HttpServletRequest req = null;// 저변
     
     public HashMapBinder() {}
-    
+    //생성자 파라미터에 요청객체(지변)가 필요한 이유 뭐죠?
     public HashMapBinder( HttpServletRequest req ) {
+        //생성자의 1역할 - 전변의 초기화
         this.req = req;
     }
     

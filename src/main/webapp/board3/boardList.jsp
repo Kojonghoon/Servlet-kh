@@ -174,7 +174,9 @@
         		<td><%=rMap.get("BM_WRITER")%></td>
         		<td><%=rMap.get("BM_REG")%></td>
         		<td>
-        		<%="첨부파일 없음"%>	
+        		<a href="javascript:fileDown('<%=rMap.get("BM_FILE")%>')" style="text-decoration:none; color:#000000">
+        		<%=rMap.get("BM_FILE")%>	
+        		</a>
         		</td>
         		<td><%=rMap.get("BM_HIT")%></td>
         	</tr>
@@ -228,7 +230,7 @@
 %>
 <!-- 글입력 화면 추가 시작 -->
     <div id="dlg_boardIns" footer="#tb_boardIns" class="easyui-dialog" title="글쓰기" data-options="modal:true,closed:true" style="width:600px;height:400px;padding:10px">
-        <!-- <form id="f_boardIns" method="post" enctype="multipart/form-data" action="./boardInsert.pj"> -->
+        <!-- <form id="f_boardIns" method="post" enctype="multipart/form-data" action="./boardInsert.st3"> -->
         <form id="f_boardIns" method="get" action="./boardInsert.st3">
         <!-- hidden속성은 화면에 보이지 않음. 개발자가 필요로 하는 값
         등록 부분과 수정 부분이 동시에 발생할 수 도 있다  - 트랜잭션 처리가 필요함

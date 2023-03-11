@@ -7,14 +7,14 @@
 	</delete>
 	<select id="boardList" parameterType="java.util.HashMap" resultType="map">
 		SELECT
-		       bm.bm_no, bm.bm_title, bm.bm_writer, bs.bs_file, bm.bm_content
-		     , bm.bm_group, bm.bm_pos, bm.bm_step
+		       bm.bm_no, bm.bm_title, bm.bm_writer, NVL(bs.bs_file,' ')bs_file, bm.bm_content
+		     , bm.bm_hit , bm.bm_group, bm.bm_pos, bm.bm_step
 		     , bm.bm_reg, bm.bm_pw
-		  FROM board_master_t bm, board_sub_t bs
+		 FROM board_master_t bm, board_sub_t bs
 		 WHERE bm.bm_no = bs.bm_no(+)
 		<if test= 'bm_no  > 0' >
 		 		AND bm.bm_no = #{bm_no}
-		 </if> 
+		 </if>  
 		<if test= 'bm_reg!=null and bm_reg.length()!=0 and bm_reg!="undefined"' >
 		 		AND bm_reg LIKE  '%'||#{bm_reg}||'%'
 		 </if> 
@@ -33,7 +33,7 @@
 		INSERT INTO board_master_t(bm_no, bm_title, bm_writer, bm_content, bm_reg
 		                                              , bm_hit, bm_pw, bm_group, bm_pos, bm_step)
 	                                      VALUES(#{bm_no}, #{bm_title}, #{bm_writer}, #{bm_content}
-	                                                 , to_char(sysdate, 'YYYY-MM-DD'), default, #{bm_pw}
+	                                                 , to_char(sysdate, 'YYYY-MM-DD'), 0, #{bm_pw}
 	                                                 , #{bm_group}, #{bm_pos}, #{bm_step})
 	</insert>
 	<insert id="boardSInsert" parameterType="map">
@@ -55,6 +55,13 @@
 		        ,bm_reg = TO_CHAR(sysdate, 'YYYY-MM-DD')
 		 WHERE bm_no  = #{bm_no}
 	</update>
+	
+	<update id="hitCount" parameterType="int" >
+		UPDATE board_master_t
+		   SET bm_hit = bm_hit + 1
+		 WHERE bm_no  = #{value}
+	</update>
+	
 	<update id="bStepUpdate" parameterType="map" >
 		UPDATE board_master_t
 		   SET bm_step = bm_step + 1

@@ -10,6 +10,7 @@
 	String bm_no = null;
 	String bm_group = null;
 	String bm_pos = null;
+	String bm_hit = null;
 	String bm_step = null;
 	if(getBoardList!=null && getBoardList.size()>0){
 		bm_title = getBoardList.get(0).get("BM_TITLE").toString();
@@ -18,6 +19,7 @@
 		bm_pw = getBoardList.get(0).get("BM_PW").toString();
 		bm_no = getBoardList.get(0).get("BM_NO").toString();
 		bm_group = getBoardList.get(0).get("BM_GROUP").toString();
+		bm_hit = getBoardList.get(0).get("BM_HIT").toString();
 		bm_pos = getBoardList.get(0).get("BM_POS").toString();
 		bm_step = getBoardList.get(0).get("BM_STEP").toString();
 	}
@@ -154,7 +156,7 @@
 	<tr>
 		<td width="120px">글제목</td>
 		<td width="580px">
-			<input id="bm_title" value="<%=getBoardList.get(0).get("BM_TITLE").toString() %>" name="bm_title" class="easyui-textbox">
+			<input id="bm_title" value="<%=bm_title %>" name="bm_title" class="easyui-textbox">
 		</td>
 	</tr>
 	<tr>
@@ -172,7 +174,7 @@
 	<tr>
 		<td width="120px">첨부파일</td>
 		<td width="580px">
-			<input id="b_file" name="b_file" class="easyui-filebox" style="width:100%">
+			<input id="bm_file" name="bm_file" class="easyui-filebox" style="width:100%">
 		</td>
 	</tr>	
 	<tr>

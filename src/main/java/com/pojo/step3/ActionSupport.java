@@ -63,12 +63,12 @@ public class ActionSupport extends HttpServlet {
 		}//end of 페이지  이동처리에 대한 공통 코드 부분		
 		
 	}
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		logger.info("doGet호출");//브라우저의 주소창을 통해 요청하는 건 모두 get방식이다 - doGet()호출
 		doService(req,resp);
 	}
-
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		logger.info("doPost호출");

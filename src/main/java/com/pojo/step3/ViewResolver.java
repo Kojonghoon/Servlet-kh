@@ -11,7 +11,6 @@ import org.apache.log4j.Logger;
 
 public class ViewResolver {
     Logger logger = Logger.getLogger(ViewResolver.class);
-    public ViewResolver() {}
     public ViewResolver(HttpServletRequest req, HttpServletResponse res, String[] pageMove)
     throws ServletException, IOException
     {

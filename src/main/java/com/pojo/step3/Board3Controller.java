@@ -44,6 +44,8 @@ public class Board3Controller implements Controller3 {
         logger.info( "jsonBoardList호출" );
         List<Map<String, Object>> bList = null;
         Map<String, Object>       pMap  = new HashMap<>();
+        HashMapBinder hmb = new HashMapBinder(req);
+        hmb.bind( pMap );
         bList = boardLogic.boardList( pMap );
         // 오라큰 연동 후에 조회 결과를 bList에 담겨 있음
         // forward할 때 그 주소번지를 저장해 둠 - 화면세어 접근함 - 키값이 중요함
@@ -89,7 +91,7 @@ public class Board3Controller implements Controller3 {
         HashMapBinder hmb = new HashMapBinder( req );
         hmb.multiBind( pMap );
         logger.info( "after==>" + pMap );
-        result = boardLogic.boardInsert( pMap );
+        /* result = boardLogic.boardInsert( pMap ); */
         String path = "";
         
         if ( result == 1 ) {
@@ -181,6 +183,7 @@ public class Board3Controller implements Controller3 {
         // logger.info(g);
         String temp = "";
         temp = rMap.get( "bs_file" ).toString() + "," + rMap.get( "bs_size" ).toString();
+        logger.info( temp );
         return temp;
     }
     
@@ -188,7 +191,7 @@ public class Board3Controller implements Controller3 {
     public Object imageGet( HttpServletRequest req, HttpServletResponse res ) {
         String b_file = req.getParameter( "imageName" );
         logger.info( "imageGet 호출 성공===>" + b_file );
-        String filePath = "C:\\kh_git2022\\dev_java20220415\\dev_web\\src\\main\\webapp\\pds"; // 절대경로.
+        String filePath = "D:\\koko\\workspace_java\\Servlet230216\\src\\main\\webapp\\pds"; // 절대경로.
         String fname    = b_file;
         logger.info( "b_file: 8->euc" + b_file );
         //File은 내용까지 복제되는 것은 아니고 파일명만 객체화 해줌 클래스이다.

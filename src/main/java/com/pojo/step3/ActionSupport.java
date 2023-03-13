@@ -1,6 +1,7 @@
 package com.pojo.step3;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -58,13 +59,18 @@ public class ActionSupport extends HttpServlet {
 				pageMove = new String[2];
 				pageMove[0] = "";//forward-> ViewResolver else if()타게됨-> webapp
 				pageMove[1] = mav.getViewName();
-				
 			}
+			logger.info( "Object가 String 일때와 ModelAndView일때가 끝난지점..." );
 			if(pageMove !=null && pageMove.length==2) {
 				//pageMove[0] = redirect or forward
 				//pageMove[1] = XXX.jsp
 				new ViewResolver(req,res,pageMove);
 			}
+			else if(pageMove !=null && pageMove.length==1) {
+			    res.setContentType( "text/plain;charset=UTF-8" );
+			    PrintWriter out = res.getWriter();
+			    out.print( pageMove[0] );
+			    }
 		}//end of 페이지  이동처리에 대한 공통 코드 부분		
 	}
 	

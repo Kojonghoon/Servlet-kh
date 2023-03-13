@@ -42,11 +42,16 @@ public class ActionSupport extends HttpServlet {
 				if(((String) obj).contains(":")) {
 					logger.info(":포함되어 있어요.");
 					pageMove = obj.toString().split(":");
-				}else {
-					logger.info(":포함되어 있지 않아요.");
+				}else if(((String) obj).contains("/")) {
+					logger.info("/ 포함되어 있어요.");
 					pageMove = obj.toString().split("/");
+				}else {
+				    //spring boot ->RestController spring4(@RestController가 미지원)버전은 ResponseBody사용
+				    logger.info( ":콜론도 /도 포함되어 있지 않아요" );//text/plain->text형식 ->String
+				    pageMove = new String[1];
+				    pageMove[0] = obj.toString();
+				    logger.info( obj.toString() );
 				}
-				logger.info(pageMove[0]+" , "+pageMove[1]);
 			}else if(obj instanceof ModelAndView) {
 				logger.info("obj가 ModelAndView일때");
 				mav = (ModelAndView)obj;
@@ -55,13 +60,12 @@ public class ActionSupport extends HttpServlet {
 				pageMove[1] = mav.getViewName();
 				
 			}
-			if(pageMove !=null) {
+			if(pageMove !=null && pageMove.length==2) {
 				//pageMove[0] = redirect or forward
 				//pageMove[1] = XXX.jsp
 				new ViewResolver(req,res,pageMove);
 			}
 		}//end of 페이지  이동처리에 대한 공통 코드 부분		
-		
 	}
 	
 	@Override

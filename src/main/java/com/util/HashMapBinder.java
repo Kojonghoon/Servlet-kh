@@ -38,7 +38,7 @@ public class HashMapBinder {
     }
     
     public void multiBind( Map<String, Object> pMap ) {
-        logger.info( "multiBind 호출" );
+        logger.info( "multiBind 호출" );//어디서 배달 사고가 났나
         // 컨트롤 계층에서 생성한 맴 객체 비우기
         pMap.clear();
         
@@ -56,16 +56,16 @@ public class HashMapBinder {
         }
         // 첨부파일에 대한 정보를 받아오기
         Enumeration<String> files = multi.getFileNames();// n개 만큼
-        
+        logger.info( files );
         if ( files != null ) {
+            logger.info( "files null아니면" );
             // 업로드 대상 파일을 객체로 만듦
             File file = null;// 내용까지 복제되는건 아니다. - 파일명에 대해서만 객체화
-            
             while ( files.hasMoreElements() ) {
+                logger.info( "첨부파일이 존재 때 호출" );
                 String fname    = files.nextElement();
                 String filename = multi.getFilesystemName( fname );
                 pMap.put( "bs_file", filename );
-                
                 if ( filename != null && filename.length() > 1 ) {
                     file = new File( realFolder + "\\" + filename );
                 }
@@ -73,8 +73,7 @@ public class HashMapBinder {
             }// end of while
              // 첨부파일에 크기를 담을 수 있는 변수 선언
             double size = 0;
-            
-            if ( files != null ) {
+            if ( file != null ) {
                 size = file.length();// 파일크기를 byte단위로 담아줌
                 size = size / 1024.0; // byte -> kbyte
                 pMap.put( "bs_size", size );

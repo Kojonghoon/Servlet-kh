@@ -16,7 +16,7 @@ public class CommonDao {
     MyBatisCommonFactory mcf    = new MyBatisCommonFactory();
     
     public List<Map<String, Object>> zipcodeList( Map<String, Object> pMap ) {
-        logger.info( "zipcodeList호출" );
+        logger.info( "Dao : zipcodeList호출" );
         List<Map<String, Object>> zList             = null;
         SqlSessionFactory         sqlSessionFactory = null;
         SqlSession                sqlSession        = null;
@@ -24,7 +24,6 @@ public class CommonDao {
         try {
             sqlSessionFactory = mcf.getSqlSessionFactory();
             sqlSession = sqlSessionFactory.openSession();
-            pMap.put( "dong", "역삼" );
             zList = sqlSession.selectList( "zipcodeList", pMap );
             logger.info( zList );// 3건 조회
         }

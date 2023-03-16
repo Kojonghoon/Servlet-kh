@@ -5,8 +5,7 @@
 		resultType="map">
 		SELECT mem_id, mem_name
 		FROM book_member
-		WHERE mem_id =
-		#{mem_id}
+		WHERE mem_id = #{mem_id}
 		AND mem_pw = #{mem_pw}
 	</select>
 
@@ -17,5 +16,4 @@
 		WHERE mem_id = #{mem_id}
 		OR mem_pw = #{mem_pw}
 	</select>
-
 </mapper>

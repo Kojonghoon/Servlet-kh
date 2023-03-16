@@ -22,6 +22,13 @@ public class Board3Controller implements Controller3 {
     Logger      logger     = Logger.getLogger( Board3Controller.class );
     Board3Logic boardLogic = new Board3Logic();
 //    @Autowired
+    
+
+    @Override
+    public Object login( HttpServletRequest req, HttpServletResponse res ) {
+        
+        return null;
+    }
     @Override
     public ModelAndView boardList( HttpServletRequest req, HttpServletResponse res ) {
         logger.info( "boardList호출" );
@@ -332,12 +339,13 @@ public class Board3Controller implements Controller3 {
         return null;
     }// end of imageDownload
 
-
-
     
     @Override
-    public ModelAndView zipcodeList( HttpServletRequest req, HttpServletResponse res ) {
+    public Object zipcodeList( HttpServletRequest req, HttpServletResponse res ) {
         // TODO Auto-generated method stub
         return null;
     }
+
+
+
 }

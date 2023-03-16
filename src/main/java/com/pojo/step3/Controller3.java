@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public interface Controller3 {
-    public ModelAndView zipcodeList(HttpServletRequest req, HttpServletResponse res);
+    public Object login(HttpServletRequest req, HttpServletResponse res);
+    public Object zipcodeList(HttpServletRequest req, HttpServletResponse res);
 	public Object jsonBoardList(HttpServletRequest req, HttpServletResponse res);
 	public Object boardList(HttpServletRequest req, HttpServletResponse res);
 	public Object boardDetail(HttpServletRequest req, HttpServletResponse res);

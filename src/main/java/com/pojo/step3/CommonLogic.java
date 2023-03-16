@@ -11,7 +11,7 @@ public class CommonLogic {
     Logger logger = Logger.getLogger( CommonLogic.class );
 //    @Autowired
     public List<Map<String, Object>> zipcodeList( Map<String, Object> pMap ) {
-        logger.info( "zipcodeList호출 : " + pMap );
+        logger.info( "Logic : zipcodeList시작 " + pMap );
         List<Map<String, Object>> zList = null;
         zList = commonDao.zipcodeList( pMap );
         return zList;

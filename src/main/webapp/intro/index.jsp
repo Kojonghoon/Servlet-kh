@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Web Application</title>
+<title>Web Application[쿠키인증실습]</title>
 <%@include file="../common/easyUI_common.jsp"%>
 <style type="text/css">
 a {

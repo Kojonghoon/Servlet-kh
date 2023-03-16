@@ -27,7 +27,11 @@ public class ViewResolver {
         //WEB-INF/views/(~~~~~).jsp
         else {
             logger.info("else");
-            path = pageMove[0]+"/"+pageMove[1];
+            if(pageMove[0]!=null && pageMove[0].length()>0) {
+            path = pageMove[0]+"/"+pageMove[1]; //""/member/cindex
+            }else {
+                path=pageMove[1];//member/cindex
+            }
             RequestDispatcher view = req.getRequestDispatcher("/WEB-INF/views/"+path+".jsp");
             view.forward(req, res);
         }

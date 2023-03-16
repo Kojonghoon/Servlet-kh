@@ -18,8 +18,14 @@ public class CommonController implements Controller3 {
     private CommonLogic commonLogic = new CommonLogic();
     
     @Override
+    public Object login( HttpServletRequest req, HttpServletResponse res ) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    
+    @Override
     public ModelAndView zipcodeList( HttpServletRequest req, HttpServletResponse res ) {
-        logger.info( "zipcodeList호출" );
+        logger.info( "Controller : zipcodeList시작" );
         List<Map<String, Object>> zList = null;
         // 사용자가 조건 검색을 원하는 경우 - 조건 값을 전달할 객체 생성함
         // MyBatis에서는 동적쿼리를 지원하므로 하나로 2가지 경우 사용 가능함
@@ -27,9 +33,10 @@ public class CommonController implements Controller3 {
         HashMapBinder       hmb  = new HashMapBinder( req );
         hmb.bind( pMap );
         zList = commonLogic.zipcodeList( pMap );
-        logger.info( zList );
+        logger.info( "zList 정보 : "+zList );
         ModelAndView mav = new ModelAndView( req );
-        mav.setViewName( "common/zipcodeList" );
+        //WEB-INF/views/common/jsonZipCOdeList.jsp
+        mav.setViewName( "common/jsonZipcodeList" );
         mav.addObject( "zList", zList );
         return mav;
     }
@@ -87,4 +94,5 @@ public class CommonController implements Controller3 {
         // TODO Auto-generated method stub
         return null;
     }
+
 }

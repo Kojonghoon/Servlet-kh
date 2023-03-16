@@ -26,10 +26,13 @@ public class HandlerMapping {
         String       path       = null;
         Object       obj        = null;
         ModelAndView mav        = null;
+        
         if ( "common".equals( upmu[0] ) ) {
             controller = new CommonController();
+            
             if ( "zipcodeList".equals( upmu[1] ) ) {// html화면 출력이 나감 - text/html
                 obj = controller.zipcodeList( req, res );
+                
                 // 리턴타입이 ModelAndView
                 if ( obj instanceof ModelAndView ) {
                     return ( ModelAndView ) obj;
@@ -38,7 +41,7 @@ public class HandlerMapping {
                 else if ( obj instanceof String ) {
                     return ( String ) obj;
                 }
-            }/////end of zipcodeList
+            }///// end of zipcodeList
         }
         else if ( "board3".equals( upmu[0] ) ) {
             controller = new Board3Controller();
@@ -134,13 +137,26 @@ public class HandlerMapping {
                 }
             }
         }// end of 게시판 구현
-         // 인증관리 - 김유신
+        
+        // 인증관리 - 김유신
         else if ( "auth".equals( upmu[0] ) ) {
             
         }
         // 회원관리 - 이순신
         else if ( "member".equals( upmu[0] ) ) {
+            controller = new MemberController();
             
+            if ( "login".equals( upmu[1] ) ) {
+                obj = controller.login( req, res );
+                
+                if ( obj instanceof ModelAndView ) {
+                    return ( ModelAndView ) obj;
+                }
+                // 리턴타입이 String
+                else if ( obj instanceof String ) {
+                    return ( String ) obj;
+                }
+            }
         }
         // 주문관리 - 강감찬
         else if ( "order".equals( upmu[0] ) ) {

@@ -1,30 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	String cmem_id = null;
-	String cmem_name = null;
-	//서버측에서 클라이언트(사용자) 쿠키값 좀 보내주세요
-	Cookie cs[] = request.getCookies();
-	int size = 0;
-	//NullPointerException발생 가능함
-	if (cs != null) {
-		size = cs.length;
+String cmem_id = null;
+String cmem_name = null;
+//서버측에서 클라이언트(사용자) 쿠키값 좀 보내주세요
+Cookie cs[] = request.getCookies();
+int size = 0;
+//NullPointerException발생 가능함
+if (cs != null) {
+	size = cs.length;
+}
+for (int i = 0; i < size; i++) {
+	//쿠키이름을 가져온다 - 생성자의 첫번쨰 파라미터 자리값
+	String c_name = cs[i].getName();
+	//서버측에서 클라이언트로 부터 넘겨받은 문자열을 비교함
+	if ("cmem_id".equals(c_name)) {
+		//쿠키이름이 cmem_id인 이름이 가진 값을 가져와서 담아줘 
+		cmem_id = cs[0].getValue();
 	}
-	for (int i = 0; i < size; i++) {
-	    //쿠키이름을 가져온다 - 생성자의 첫번쨰 파라미터 자리값
-		String c_name = cs[i].getName();
-	    //서버측에서 클라이언트로 부터 넘겨받은 문자열을 비교함
-		if ("cmem_id".equals(c_name)) {
-		    //쿠키이름이 cmem_id인 이름이 가진 값을 가져와서 담아줘 
-			cmem_id = cs[0].getValue();
-		}
-	    //한 번더 쿠키값을 꺼내 온다 - 다만 이름이 다른 - 사용자의 이름을 불러주자
-		if ("cmem_name".equals(c_name)) {
-			cmem_name = cs[1].getValue();
-		}
+	//한 번더 쿠키값을 꺼내 온다 - 다만 이름이 다른 - 사용자의 이름을 불러주자
+	if ("cmem_name".equals(c_name)) {
+		cmem_name = cs[1].getValue();
 	}
-	out.print("쿠키에서 꺼내 온 값 ===> " + cmem_id + "   ,   " + cmem_name);
-	if (cmem_id == null) {
+}
+out.print("쿠키에서 꺼내 온 값 ===> " + cmem_id + "   ,   " + cmem_name);
+if (cmem_id == null) {
 %>
 <script>
 		alert("로그인 하세요.");
@@ -59,6 +59,10 @@ a {
 			console.log(user_id + user_pw);
 			window.location.href="./login.st3?mem_id="+user_id+"&mem_pw="+user_pw;
 		}
+			const logout=()=>{
+			//여기서 ./ 없으면 pageMove배열에 매칭이 안되니까 조심하세요
+			window.location.href ="./logout.st3";
+			}
 	</script>
 </head>
 <body>
@@ -68,6 +72,10 @@ a {
 		<!-- 메뉴 구성 [로그인화면 과 트리메뉴] -->
 		<div id="p" data-options="region:'west'" title="KH정보교육원"
 			style="width: 200px; padding: 10px">
+			<%
+			//쿠키값이 null인거야? - 로그인을 아직 안했어?
+			if (cmem_id == null) {
+			%>
 			<!--============== [[ 로그인 화면 ]]  ==============-->
 			<div id="d_login" align="center">
 				<div style="margin: 3px 0;"></div>
@@ -103,7 +111,33 @@ a {
 				});        	
         	</script>
 			</div>
+			<!--============== [[ 로그인 화면 ]]  ==============-->
+			<%
+			} else {//로그인을 한 상태입니다.
+			%>
 			<!--============= [[ 로그아웃 화면 ]]  ==============-->
+
+			<div id="d_logout" align="center">
+				<span><%=cmem_name%>님 환영합니다</span> <br />
+				<div style="margin: 3px 0;"></div>
+				<!-- 외부 여백을 위, 아래에 3px  -->
+				<a id="btn_logout" href="javascript:logout()">로그아웃</a>
+				<script>
+					$('#btn_logout').linkbutton({
+					    iconCls: 'icon-remove'
+					});        	
+	        	</script>
+				<a id="btn_member" href="javascript:memberShip()">정보수정</a>
+				<script>
+					$('#btn_member').linkbutton({
+					    iconCls: 'icon-edit'
+					});        	
+	        	</script>
+			</div>
+			<!--============= [[ 로그아웃 화면 ]]  ==============-->
+			<%
+			}
+			%>
 			<div id="d_logout" align="center"></div>
 			<!-- 메뉴 구성 [로그인화면 과 트리메뉴] -->
 			<div style="margin: 3px 0;"></div>

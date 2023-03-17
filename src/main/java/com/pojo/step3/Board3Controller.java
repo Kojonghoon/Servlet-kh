@@ -23,12 +23,18 @@ public class Board3Controller implements Controller3 {
     Board3Logic boardLogic = new Board3Logic();
 //    @Autowired
     
+    @Override
+    public Object logout( HttpServletRequest req, HttpServletResponse res ) {
+        
+        return null;
+    }
 
     @Override
     public Object login( HttpServletRequest req, HttpServletResponse res ) {
         
         return null;
     }
+    
     @Override
     public ModelAndView boardList( HttpServletRequest req, HttpServletResponse res ) {
         logger.info( "boardList호출" );

@@ -24,6 +24,12 @@ public class CommonController implements Controller3 {
     }
     
     @Override
+    public Object logout( HttpServletRequest req, HttpServletResponse res ) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+    
+    @Override
     public ModelAndView zipcodeList( HttpServletRequest req, HttpServletResponse res ) {
         logger.info( "Controller : zipcodeList시작" );
         List<Map<String, Object>> zList = null;
